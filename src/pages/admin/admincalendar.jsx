@@ -59,7 +59,7 @@ const Admincalendar = ({history}) => {
     const formattedDate = `${year}-${month}-${day}`;
   
     try {
-      const response = await fetch('https://collabsia.vercel.app/api/getme', {
+      const response = await fetch('https://collabsiaserver.onrender.com/api/getme', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -69,11 +69,11 @@ const Admincalendar = ({history}) => {
       const myemail = result.user.email;
   
       const [memoResponse, eventResponse] = await Promise.all([
-        axios.post("https://collabsia.vercel.app/api/memo/send-and-recieve", {
+        axios.post("https://collabsiaserver.onrender.com/api/memo/send-and-recieve", {
           date: formattedDate,
           email: myemail,
         }),
-        axios.post("https://collabsia.vercel.app/api/getevent", { useremail: myemail, date: formattedDate }),
+        axios.post("https://collabsiaserver.onrender.com/api/getevent", { useremail: myemail, date: formattedDate }),
       ]);
   
       const memoData = memoResponse.data.memo || [];
@@ -136,7 +136,7 @@ const Admincalendar = ({history}) => {
   useEffect(() => {
     const fetchEventsForCurrentMonth = async () => {
       try {
-        const response = await fetch('https://collabsia.vercel.app/api/getme', {
+        const response = await fetch('https://collabsiaserver.onrender.com/api/getme', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -149,7 +149,7 @@ const Admincalendar = ({history}) => {
         const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
         const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 
-        const thisMonthEventResponse = await axios.post("/api/Eventonthismonth", { email: myemail });
+        const thisMonthEventResponse = await axios.post("https://collabsiaserver.onrender.com/api/Eventonthismonth", { email: myemail });
 
         const thisMonthEvents = thisMonthEventResponse.data.events.map((event) => ({
           eventid: event._id,
@@ -216,7 +216,7 @@ const Admincalendar = ({history}) => {
       }
 
     else if(event.type === 'received'){
-      const response = await axios.get('https://collabsia.vercel.app/api/getme', {
+      const response = await axios.get('https://collabsiaserver.onrender.com/api/getme', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -224,7 +224,7 @@ const Admincalendar = ({history}) => {
 
       if (response.status === 200 && response.data) {
         const email = response.data.user.email;
-        const read = await axios.post('https://collabsia.vercel.app/api/memo/read', { email, memoId });
+        const read = await axios.post('https://collabsiaserver.onrender.com/api/memo/read', { email, memoId });
         history.push(`/admin/recieve_memo/${memoId}`);
       }
     } else{
@@ -241,7 +241,7 @@ const Admincalendar = ({history}) => {
 
 
   useEffect(() => {
-    fetch('https://collabsia.vercel.app/api/details', {
+    fetch('https://collabsiaserver.onrender.com/api/details', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -311,7 +311,7 @@ const Admincalendar = ({history}) => {
               'end': { 'dateTime': new Date(endDateTime).toISOString(), 'timeZone': 'Asia/Manila' }
             };
 
-            const res = await fetch('https://collabsia.vercel.app/api/getme', {
+            const res = await fetch('https://collabsiaserver.onrender.com/api/getme', {
               headers: {
                 'Authorization': `Bearer ${token}`,
               },
@@ -320,7 +320,7 @@ const Admincalendar = ({history}) => {
             const result = await res.json();
             const useremail = result.user.email;
         
-               axios.post('https://collabsia.vercel.app/api/create_event',{useremail,summary,description,startDateTime,endDateTime}) 
+               axios.post('https://collabsiaserver.onrender.com/api/create_event',{useremail,summary,description,startDateTime,endDateTime}) 
     
            
             const response = await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events", {
