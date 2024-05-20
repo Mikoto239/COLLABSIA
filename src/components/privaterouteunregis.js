@@ -11,7 +11,7 @@ const PrivateRouteUnregistedr = ({ component: Component, ...rest }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://cotmemo.onrender.com/api/getme', {
+        const response = await axios.get('https://collabsia.vercel.app/api/getme', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
