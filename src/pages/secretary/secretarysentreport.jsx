@@ -25,21 +25,21 @@ const SecretarysentReport = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const getMeResponse = await axios.get('/api/getme', {
+        const getMeResponse = await axios.get('https://collabsia.vercel.app/api/getme', {
           headers: {
             Authorization: `Bearer ${token}`,
           }
         });
         const userEmail = getMeResponse.data.user.email;
   
-        const response = await axios.get(`/api/memo/created/${memoId}?email=${userEmail}`, {
+        const response = await axios.get(`https://collabsia.vercel.app/api/memo/created/${memoId}?email=${userEmail}`, {
           responseType: 'blob', // Specify the response type as blob
         });
   
         const pdfUrl = URL.createObjectURL(response.data);
         setPdfUrl(pdfUrl);
   
-        const memodetails = await axios.get(`/api/memo/created_details/${memoId}?email=${userEmail}`);
+        const memodetails = await axios.get(`https://collabsia.vercel.app/api/memo/created_details/${memoId}?email=${userEmail}`);
         const details = memodetails.data.memo;
         const acknowledge = memodetails.data.memo.isAcknowledged
         setIsAcknowledged(acknowledge);
