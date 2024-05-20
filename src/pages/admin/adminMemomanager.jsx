@@ -36,7 +36,7 @@ const AdminMemoManager = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get('/api/details', {
+        const response = await axios.get('https://collabsia.vercel.app/api/details', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -44,7 +44,7 @@ const AdminMemoManager = () => {
 
         setProfile(response.data.user);
 
-        const memoResponse = await axios.get('/api/memoIcreate', {
+        const memoResponse = await axios.get('https://collabsia.vercel.app/api/memoIcreate', {
           params: { email: response.data.user.email },
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ const AdminMemoManager = () => {
   useEffect(() => {
     const fetchUserDataAndMemos = async () => {
       try {
-        const response = await axios.get('/api/details', {
+        const response = await axios.get('https://collabsia.vercel.app/api/details', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -77,7 +77,7 @@ const AdminMemoManager = () => {
         setProfile(response.data.user);
         setLoading(false);
 
-        const memoResponse = await axios.get('/api/showmemo', {
+        const memoResponse = await axios.get('https://collabsia.vercel.app/api/showmemo', {
           params: { email: response.data.user.email },
           headers: {
             Authorization: `Bearer ${token}`,
@@ -98,7 +98,7 @@ const AdminMemoManager = () => {
 
   const handleRead = async (e, memoId) => {
     try {
-      const response = await axios.get('/api/getme', {
+      const response = await axios.get('https://collabsia.vercel.app/api/getme', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -106,7 +106,7 @@ const AdminMemoManager = () => {
 
       if (response.status === 200 && response.data) {
         const email = response.data.user.email;
-        await axios.post('/api/memo/read', { email, memoId });
+        await axios.post('https://collabsia.vercel.app/api/memo/read', { email, memoId });
       }
     } catch (error) {
       console.error('Error fetching user details or acknowledging memo:', error);
