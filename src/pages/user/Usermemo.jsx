@@ -37,7 +37,7 @@ const UserMemoManager = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get('https://cotmemo.onrender.com/api/details', {
+        const response = await axios.get('https://collabsia.vercel.app/api/details', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -45,7 +45,7 @@ const UserMemoManager = () => {
 
         setProfile(response.data.user);
 
-        const memoResponse = await axios.get('https://cotmemo.onrender.com/api/memoIcreate', {
+        const memoResponse = await axios.get('https://collabsia.vercel.app/api/memoIcreate', {
           params: { email: response.data.user.email },
           headers: {
             Authorization: `Bearer ${token}`,
@@ -74,7 +74,7 @@ const UserMemoManager = () => {
   useEffect(() => {
     const fetchUserDataAndMemos = async () => {
       try {
-        const response = await axios.get('https://cotmemo.onrender.com/api/details', {
+        const response = await axios.get('https://collabsia.vercel.app/api/details', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -83,7 +83,7 @@ const UserMemoManager = () => {
         setProfile(response.data.user);
         setLoading(false); // Set loading to false once user details are fetched
   
-        const memoResponse = await axios.get('https://cotmemo.onrender.com/api/showmemo', {
+        const memoResponse = await axios.get('https://collabsia.vercel.app/api/showmemo', {
           params: { email: response.data.user.email },
           headers: {
             Authorization: `Bearer ${token}`,
@@ -104,7 +104,7 @@ const UserMemoManager = () => {
 
   const handleRead = async (e, memoId) => {
     try {
-      const response = await axios.get('https://cotmemo.onrender.com/api/getme', {
+      const response = await axios.get('https://collabsia.vercel.app/api/getme', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -112,7 +112,7 @@ const UserMemoManager = () => {
 
       if (response.status === 200 && response.data) {
         const email = response.data.user.email;
-    await axios.post('https://cotmemo.onrender.com/api/memo/read', { email, memoId });
+    await axios.post('https://collabsia.vercel.app/api/memo/read', { email, memoId });
       }
     } catch (error) {
       console.error('Error fetching user details or acknowledging memo:', error);
