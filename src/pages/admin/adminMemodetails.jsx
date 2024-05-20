@@ -19,7 +19,7 @@ const AdminMemoDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const getMeResponse = await axios.get('/api/getme', {
+        const getMeResponse = await axios.get('https://collabsiaserver.onrender.com/api/getme', {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -27,12 +27,12 @@ const AdminMemoDetails = () => {
         const userEmail = getMeResponse.data.user.email;
 
         // Fetch memo details first
-        const memoDetailsResponse = await axios.get(`https://collabsia.vercel.app/api/memo/created_details/${memoId}?email=${userEmail}`);
+        const memoDetailsResponse = await axios.get(`https://collabsiaserver.onrender.com/api/memo/created_details/${memoId}?email=${userEmail}`);
         const details = memoDetailsResponse.data.memo;
         setMemoDetails(details);
 
         // Fetch PDF URL
-        const pdfResponse = await axios.get(`https://collabsia.vercel.app/api/memo/created/${memoId}?email=${userEmail}`, {
+        const pdfResponse = await axios.get(`https://collabsiaserver.onrender.com/api/memo/created/${memoId}?email=${userEmail}`, {
           responseType: 'blob', // Specify the response type as blob
         });
 
