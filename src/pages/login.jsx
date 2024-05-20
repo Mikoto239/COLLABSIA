@@ -23,6 +23,7 @@ const Login = ({ history }) => {
         email: userObject.email,
         token: token,
       });
+      console.log(data.token);
 
       if (data.success === true) {
         const response = await fetch('https://collabsiaserver.onrender.com/api/getme', {
