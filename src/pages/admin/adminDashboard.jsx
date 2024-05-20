@@ -45,7 +45,7 @@ const Admindashboard = ({ history }) => {
   useEffect(() => {
     const fetchLatestReceivedMemos = async () => {
       try {
-        const response = await axios.get('https://collabsia.vercel.app/api/getme', {
+        const response = await axios.get('https://collabsiaserver.onrender.com/api/getme', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -55,7 +55,7 @@ const Admindashboard = ({ history }) => {
 
         const formattedDate = getCurrentFormattedDate();
 
-        const memoResponse = await axios.post("https://collabsia.vercel.app/api/memo/send-and-recieve", {
+        const memoResponse = await axios.post("https://collabsiaserver.onrender.com/api/memo/send-and-recieve", {
           date: formattedDate,
           email,
         });
@@ -83,7 +83,7 @@ const Admindashboard = ({ history }) => {
 
   const fetchMemoOverview = async () => {
     try {
-      const response = await axios.get('https://collabsia.vercel.app/api/getme', {
+      const response = await axios.get('https://collabsiaserver.onrender.com/api/getme', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -94,7 +94,7 @@ const Admindashboard = ({ history }) => {
       const month = String(currentDate.getMonth() + 1).padStart(2, '0');
       const year = currentDate.getFullYear();
 
-      const Allreport = await axios.post('https://collabsia.vercel.app/api/allreport', {
+      const Allreport = await axios.post('https://collabsiaserver.onrender.com/api/allreport', {
         email,
         month,
         year,
@@ -154,7 +154,7 @@ const Admindashboard = ({ history }) => {
     const formattedDate = `${year}-${month}-${day}`;
 
     try {
-      const response = await fetch('https://collabsia.vercel.app/api/getme', {
+      const response = await fetch('https://collabsiaserver.onrender.com/api/getme', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -164,11 +164,11 @@ const Admindashboard = ({ history }) => {
       const myemail = result.user.email;
 
       const [memoResponse, eventResponse] = await Promise.all([
-        axios.post("https://collabsia.vercel.app/api/memo/send-and-recieve", {
+        axios.post("https://collabsiaserver.onrender.com/api/memo/send-and-recieve", {
           date: formattedDate,
           email: myemail,
         }),
-        axios.post("https://cotmemo.onrender.com/api/getevent", { useremail: myemail, date: formattedDate }),
+        axios.post("https://collabsiaserver.onrender.com/api/getevent", { useremail: myemail, date: formattedDate }),
       ]);
 
       const memoData = memoResponse.data.memo || [];
@@ -234,7 +234,7 @@ const Admindashboard = ({ history }) => {
     if (event.type === 'sent') {
       history.push(`/admin/memo_Icreate/${memoId}`);
     } else if (event.type === 'received') {
-      const response = await axios.get('https://collabsia.vercel.app/api/getme', {
+      const response = await axios.get('https://collabsiaserver.onrender.com/api/getme', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -242,7 +242,7 @@ const Admindashboard = ({ history }) => {
 
       if (response.status === 200 && response.data) {
         const email = response.data.user.email;
-        await axios.post('https://collabsia.vercel.app/api/memo/read', { email, memoId });
+        await axios.post('https://collabsiaserver.onrender.com/api/memo/read', { email, memoId });
         history.push(`/admin/recieve_memo/${memoId}`);
       }
     } else {
@@ -257,7 +257,7 @@ const Admindashboard = ({ history }) => {
   };
 
   useEffect(() => {
-    fetch('https://collabsia.vercel.app/api/details', {
+    fetch('https://collabsiaserver.onrender.com/api/details', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -282,7 +282,7 @@ const Admindashboard = ({ history }) => {
   
   const handleLatestReceivedMemoClick = async (memoId) => {
     try {
-      const response = await axios.get('https://collabsia.vercel.app/api/getme', {
+      const response = await axios.get('https://collabsiaserver.onrender.com/api/getme', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -292,7 +292,7 @@ const Admindashboard = ({ history }) => {
         const email = response.data.user.email;
 
         // Trigger the read functionality
-        await axios.post('https://collabsia.vercel.app/api/memo/read', { email, memoId });
+        await axios.post('https://collabsiaserver.onrender.com/api/memo/read', { email, memoId });
       }
     } catch (error) {
       console.error('Error marking memo as read:', error);
