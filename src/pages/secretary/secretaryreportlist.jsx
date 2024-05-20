@@ -31,7 +31,7 @@ const SecretaryReport = () => {
 
   const handleDate = async (month, year) => {
     try {
-      const getme = await axios.get('/api/getme', {
+      const getme = await axios.get('https://collabsia.vercel.app/api/getme', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,7 +39,7 @@ const SecretaryReport = () => {
 
       const email = getme.data.user.email;
 
-      const Allreport = await axios.post('/api/allreport', {
+      const Allreport = await axios.post('https://collabsia.vercel.app/api/allreport', {
         email,
         month,
         year,
