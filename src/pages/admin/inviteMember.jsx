@@ -48,7 +48,7 @@ const InviteMember = () => {
   };
 
   useEffect(() => {
-    fetch('/api/details', {
+    fetch('https://collabsia.vercel.app/api/details', {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -62,7 +62,7 @@ const InviteMember = () => {
     const code = generateCode();
 
     try {
-      await axios.post('/api/invite', {
+      await axios.post('https://collabsia.vercel.app/api/invite', {
         sender: email,
         recipient: recipient,
         subject: "Invitation From COT Department",
