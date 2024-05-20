@@ -19,7 +19,7 @@ const Userdetails = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch('https://cotmemo.onrender.com/api/details', {
+    fetch('https://collabsia.vercel.app/api/details', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
