@@ -45,7 +45,7 @@ const UserRecieveMemoDetails = ({ match }) => {
     const fetchMemoDetails = async () => {
       try {
 
-        const getme = await axios.get('https://collabsia.vercel.app/api/getme', {
+        const getme = await axios.get('https://collabsiaserver.onrender.com/api/getme', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -53,10 +53,10 @@ const UserRecieveMemoDetails = ({ match }) => {
   
         const myemail = getme.data.user.email;
   
-        const response = await axios.get(`https://collabsia.vercel.app/api/memo/details/${memoId}?email=${myemail}`);
+        const response = await axios.get(`https://collabsiaserver.onrender.com/api/memo/details/${memoId}?email=${myemail}`);
         setMemoDetails(response.data.memo);
        
-        const res = await axios.get(`https://collabsia.vercel.app/api/memo/pdfdetails/${memoId}?email=${myemail}`, {
+        const res = await axios.get(`https://collabsiaserver.onrender.com/api/memo/pdfdetails/${memoId}?email=${myemail}`, {
           responseType: 'blob', // Specify the response type as blob
         });
     
@@ -64,7 +64,7 @@ const UserRecieveMemoDetails = ({ match }) => {
         setPdfUrl(pdfUrl);
         // Correct acknowledgment request
         const acknowledgmentResponse = await axios.post(
-          `https://collabsia.vercel.app/api/Iacknowledge/${memoId}`,
+          `https://collabsiaserver.onrender.com/api/Iacknowledge/${memoId}`,
           { email: myemail }
         );
   
@@ -84,7 +84,7 @@ const UserRecieveMemoDetails = ({ match }) => {
     let name;
   
     try {
-      const response = await axios.get('https://collabsia.vercel.app/api/getme', {
+      const response = await axios.get('https://collabsiaserver.onrender.com/api/getme', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -95,7 +95,7 @@ const UserRecieveMemoDetails = ({ match }) => {
         name = response.data.user.name;
         
   
-        const acknowledge = await axios.post(`https://collabsia.vercel.app/api/memo/acknowledge/${memoId}`, { email,name});
+        const acknowledge = await axios.post(`https://collabsiaserver.onrender.com/api/memo/acknowledge/${memoId}`, { email,name});
   
         if (acknowledge.status === 200) {
           setIsAcknowledged(true);
