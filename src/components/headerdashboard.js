@@ -28,7 +28,7 @@ const Header = () => {
     const fetchData = async () => {
       if (isNotificationModalOpen) {
         try {
-          const res = await fetch('/api/getme', {
+          const res = await fetch('https://collabsia.vercel.app/api/getme', {
             headers: {
               'Authorization': `Bearer ${token}`,
             },
@@ -37,7 +37,7 @@ const Header = () => {
           const result = await res.json();
           const email = result.user.email;
           const name = result.user.name;
-          const response = await axios.post('/api/getMynotifications', { email, name });
+          const response = await axios.post('https://collabsia.vercel.app/api/getMynotifications', { email, name });
 
           const combinedNotifications = [...response.data.ackNotifications, ...response.data.receivedMemos];
           const sortedNotifications = combinedNotifications.sort((a, b) => {
@@ -55,7 +55,7 @@ const Header = () => {
   }, [isNotificationModalOpen, token]);
 
   const Logout = () => {
-    axios.get('/api/logout')
+    axios.get('https://collabsia.vercel.app/api/logout')
       .then(result => {
         toast.success('Log out Successfully!');
         localStorage.removeItem('token');
@@ -70,7 +70,7 @@ const Header = () => {
   
   const handleNotificationClick = async (notification) => {
     setIsNotificationModalOpen(false);
-    const res = await fetch('/api/getme', {
+    const res = await fetch('https://collabsia.vercel.app/api/getme', {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -95,14 +95,14 @@ const Header = () => {
     else if (notification.type === 'New Memo') {
       
       if (role === 1) {
-        await axios.post('/api/memo/read', { email, memoId });
+        await axios.post('https://collabsia.vercel.app/api/memo/read', { email, memoId });
         destinationPath = `/admin/recieve_memo/${notification.memoId}`;
 
       } else if (role === 2) {
-        await axios.post('/api/memo/read', { email, memoId });
+        await axios.post('https://collabsia.vercel.app/api/memo/read', { email, memoId });
         destinationPath = `/secretary/recieve_memo/${notification.memoId}`;
       } else if (role === 3) {
-        await axios.post('/api/memo/read', { email, memoId });
+        await axios.post('https://collabsia.vercel.app/api/memo/read', { email, memoId });
         destinationPath = `/user/memo/${notification.memoId}`;
       }
     }
@@ -114,7 +114,7 @@ const Header = () => {
   };
   
   useEffect(() => {
-    fetch('/api/details', {
+    fetch('https://collabsia.vercel.app/api/details', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
