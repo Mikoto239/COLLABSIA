@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { jwtDecode } from 'jwt-decode';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
@@ -19,14 +19,13 @@ const Login = ({ history }) => {
       setFormData(userObject);
       const token = response.credential;
 
-      const { data } = await axios.post('https://collabsiaserver.onrender.com/api/login', {
+      const { data } = await axios.post('https://cotmemo.onrender.com/api/login', {
         email: userObject.email,
         token: token,
       });
-      console.log(data.token);
 
       if (data.success === true) {
-        const response = await fetch('https://collabsiaserver.onrender.com/api/getme', {
+        const response = await fetch('https://cotmemo.onrender.com/api/getme', {
           headers: {
             'Authorization': `Bearer ${data.token}`,
           },
