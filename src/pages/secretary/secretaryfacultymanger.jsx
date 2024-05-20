@@ -67,7 +67,7 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
     console.log(value);
     
     if (value === 'BSIT') {
-      axios.get('https://collabsia.vercel.app/api/getallbsit')
+      axios.get('https://collabsiaserver.onrender.com/api/getallbsit')
       .then((response)=>{
         usersetProfile(response.data.bsituser);
         setLoading(false);
@@ -79,7 +79,7 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
         toast.error('Error fetching users');
       });
     } else if (value === 'BSAT') {
-      axios.get('https://collabsia.vercel.app/api/getallbsat')
+      axios.get('https://collabsiaserver.onrender.com/api/getallbsat')
         .then((response) => {
           usersetProfile(response.data.bsatuser);
           setLoading(false);
@@ -91,7 +91,7 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
           toast.error('Error fetching users');
         });
     } else if (value === 'BSFT') {
-      axios.get('https://collabsia.vercel.app/api/getallbsft')
+      axios.get('https://collabsiaserver.onrender.com/api/getallbsft')
       .then((response)=>{
         usersetProfile(response.data.bsftuser);
         setLoading(false);
@@ -104,7 +104,7 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
       });
     }
       else if (value === 'BSET') {
-        axios.get('https://collabsia.vercel.app/api/getallbset')
+        axios.get('https://collabsiaserver.onrender.com/api/getallbset')
         .then((response)=>{
         usersetProfile(response.data.bsetuser);
         setLoading(false);
@@ -116,7 +116,7 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
         toast.error('Error fetching users');
       });
     } else if (value === 'ALL') {
-      axios.get('https://cotmemo.onrender.com/api/getallusers')
+      axios.get('https://collabsiaserver.onrender.com/api/getallusers')
       .then((response)=>{
         usersetProfile(response.data.users);
         setLoading(false);
@@ -127,7 +127,7 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
         toast.error('Error fetching users');
       });
     } else if (value === 'ROLE') {
-      axios.get('https://collabsia.vercel.app/api/role')
+      axios.get(https://collabsiaserver.onrender.com/api/role')
       .then((response)=>{
         usersetProfile(response.data.baseonrole);
         setLoading(false);
@@ -145,7 +145,7 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
 
 
   useEffect(() => {
-    axios.get('https://collabsia.vercel.app/api/getallusers')
+    axios.get('https://collabsiaserver.onrender.com/api/getallusers')
       .then((response) => {
         usersetProfile(response.data.users); // Assuming response.data.users is an array
         setLoading(false); // Set loading to false once data is fetched
@@ -160,7 +160,7 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
   
   const handleConfirmDeleteuser = async (userrole) => {
     try {
-      const getMeResponse = await fetch('https://collabsia.vercel.app/api/getme', {
+      const getMeResponse = await fetch('https://collabsiaserver.onrender.com/api/getme', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -175,7 +175,7 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
         } else if (editedUser.email === result.user.email) {
           toast.error('You cannot delete your own account!');
         } else {
-          await axios.post('https://collabsia.vercel.app/api/deletethisuser', { email: editedUser.email });
+          await axios.post('https://collabsiaserver.onrender.com/api/deletethisuser', { email: editedUser.email });
   
           usersetProfile((prevProfiles) =>
             prevProfiles.filter((user) => user.email !== editedUser.email)
@@ -195,7 +195,7 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
   
   const handleUpdaterole = async (userrole) => {
     try {
-      const getMeResponse = await fetch('https://collabsia.vercel.app/api/getme', {
+      const getMeResponse = await fetch('https://collabsiaserver.onrender.com/api/getme', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -209,14 +209,14 @@ user.name.toLowerCase().includes(searchQuery.toLowerCase())
         if (editorrole === 2 && userrole === 1) {
           toast.error('You cannot edit this user role!');
         } else {
-          const updateRoleResponse = await axios.post('https://collabsia.vercel.app/api/updateuserrole', {
+          const updateRoleResponse = await axios.post('https://collabsiaserver.onrender.com/api/updateuserrole', {
             email: editedUser.email,
             role: updatedrole
           });
   
           if (updateRoleResponse.status === 200 && updateRoleResponse.data.success) {
             // Fetch updated user data
-            const getUsersResponse = await axios.get('https://cotmemo.onrender.com/api/getallusers');
+            const getUsersResponse = await axios.get('https://collabsiaserver.onrender.com/api/getallusers');
             const updatedUser = getUsersResponse.data.users.find(user => user.email === editedUser.email);
   
             // Update the user profiles state
