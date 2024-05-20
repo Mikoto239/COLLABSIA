@@ -109,7 +109,7 @@ const SecretaryCreateMemo = () => {
         read: false,
       }));
 
-      const response = await fetch('https://collabsia.vercel.app/api/getme', {
+      const response = await fetch('https://collabsiaserver.onrender.com/api/getme', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -141,7 +141,7 @@ const SecretaryCreateMemo = () => {
         // formData.append('subject', subject);
         // formData.append('message', message);
   
-        const { data } = await axios.post('https://collabsia.vercel.app/api/memo/uploads', formData, {
+        const { data } = await axios.post('https://collabsiaserver.onrender.com/api/memo/uploads', formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
 
@@ -169,7 +169,7 @@ const SecretaryCreateMemo = () => {
 
 
     if (value === 'BSIT') {
-      axios.get('https://collabsia.vercel.app/api/getallbsit')
+      axios.get('https://collabsiaserver.onrender.com/api/getallbsit')
         .then((response) => {
 
           const allUsers = response.data.bsituser;
@@ -186,7 +186,7 @@ const SecretaryCreateMemo = () => {
           toast.error('Error fetching users');
         });
     } else if (value === 'BSAT') {
-      axios.get('https://collabsia.vercel.app/api/getallbsat')
+      axios.get('https://collabsiaserver.onrender.com/api/getallbsat')
         .then((response) => {
 
           const allUsers = response.data.bsatuser;
@@ -204,7 +204,7 @@ const SecretaryCreateMemo = () => {
 
         });
     } else if (value === 'BSFT') {
-      axios.get('https://collabsia.vercel.app/api/getallbsft')
+      axios.get('https://collabsiaserver.onrender.com/api/getallbsft')
         .then((response) => {
 
           const allUsers = response.data.bsftuser;
@@ -223,7 +223,7 @@ const SecretaryCreateMemo = () => {
         });
     }
     else if (value === 'BSET') {
-      axios.get('https://collabsia.vercel.app/api/getallbset')
+      axios.get('https://collabsiaserver.onrender.com/api/getallbset')
         .then((response) => {
           const allUsers = response.data.bsetuser;
 
@@ -239,7 +239,7 @@ const SecretaryCreateMemo = () => {
 
         });
     } else if (value === 'ALL') {
-      axios.get('https://collabsia.vercel.app/api/getallusers', {token})
+      axios.get('https://collabsiaserver.onrender.com/api/getallusers', {token})
     .then((response) => {
         const allUsers = response.data.users;
     
@@ -251,7 +251,7 @@ const SecretaryCreateMemo = () => {
 
         });
     } else if (value === 'ROLE') {
-      axios.get('https://collabsia.vercel.app/api/role')
+      axios.get('https://collabsiaserver.onrender.com/api/role')
         .then((response) => {
           const allUsers = response.data.baseonrole;
 
@@ -272,7 +272,7 @@ const SecretaryCreateMemo = () => {
     const fetchData = async () => {
       try {
         // Fetch current user details
-        const response = await fetch('https://collabsia.vercel.app/api/getme', {
+        const response = await fetch('https://collabsiaserver.onrender.com/api/getme', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -283,7 +283,7 @@ const SecretaryCreateMemo = () => {
           const senderEmail = result.user.email;
 
           // Fetch all users
-          const usersResponse = await axios.get('https://collabsia.vercel.app/api/getallusers');
+          const usersResponse = await axios.get('https://collabsiaserver.onrender.com/api/getallusers');
           const allUsers = usersResponse.data.users;
 
           // Filter out the current user from the list
