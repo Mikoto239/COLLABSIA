@@ -12,7 +12,7 @@ const Signup = ({ history }) => {
   const [captchaisdone, setCaptchaisdone] = useState(false);
   const [captchaToken, setcaptchaToken] = useState(''); // Corrected variable name
 
-  const publickey = "6LeaveEpAAAAAI0v0daeiyViUx10XIhAiu0yWBdq";
+  const publickey = "6LdLZuIpAAAAAP-sy5lK30IDNAhOj-t5q-JH8VZn";
   const [formgoogle, setFormgoogle] = useState({
     email: '',
     name: '',
@@ -86,7 +86,7 @@ const Signup = ({ history }) => {
   useEffect(() => {
     /*global google*/
     google.accounts.id.initialize({
-      client_id: "373547344231-ft1oo9dvva0qkbvu4aqhv8f4f82dunbu.apps.googleusercontent.com",
+      client_id: "373547344231-6j6o6t1hnnpke6j59nj9g2l51hgk5nup.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
   
