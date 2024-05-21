@@ -12,7 +12,7 @@ const Signup = ({ history }) => {
   const [captchaisdone, setCaptchaisdone] = useState(false);
   const [captchaToken, setcaptchaToken] = useState(''); // Corrected variable name
 
-  const publickey = "6LdLZuIpAAAAAP-sy5lK30IDNAhOj-t5q-JH8VZn";
+  const publickey = "6Ld9COMpAAAAACD6339_VN87SgS5Uv3vkvV0V5sG";
   const [formgoogle, setFormgoogle] = useState({
     email: '',
     name: '',
@@ -33,7 +33,7 @@ const Signup = ({ history }) => {
   
     try {
       if (email) {
-        const res = await axios.post('https://collabsiaserver.onrender.com/api/signup', {
+        const res = await axios.post('/api/signup', {
           email: email,
           name: userObject.name,
           picture: userObject.picture,
@@ -49,13 +49,13 @@ const Signup = ({ history }) => {
             console.log('Signup successful. Token:', tokenFromBackend);
             localStorage.setItem('token', tokenFromBackend);
   
-            const { data } = await axios.post('https://collabsiaserver.onrender.com/api/login', {
+            const { data } = await axios.post('/api/login', {
               email,
               token: token,
             });
   
             if (data.success === true) {
-              const response = await fetch('https://collabsiaserver.onrender.com/api/getme', {
+              const response = await fetch('/api/getme', {
                 headers: {
                   'Authorization': `Bearer ${data.token}`,
                 },
@@ -86,7 +86,7 @@ const Signup = ({ history }) => {
   useEffect(() => {
     /*global google*/
     google.accounts.id.initialize({
-      client_id: "373547344231-6j6o6t1hnnpke6j59nj9g2l51hgk5nup.apps.googleusercontent.com",
+      client_id: "364065480016-q7eubgp3n4qjeea2cl5cl3c4seg1qeff.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
   
