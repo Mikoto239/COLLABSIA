@@ -19,13 +19,13 @@ const Login = ({ history }) => {
       setFormData(userObject);
       const token = response.credential;
 
-      const { data } = await axios.post('https://cotmemo.onrender.com/api/login', {
+      const { data } = await axios.post('/api/login', {
         email: userObject.email,
         token: token,
       });
 
       if (data.success === true) {
-        const response = await fetch('https://cotmemo.onrender.com/api/getme', {
+        const response = await fetch('/api/getme', {
           headers: {
             'Authorization': `Bearer ${data.token}`,
           },
@@ -68,7 +68,7 @@ const Login = ({ history }) => {
   useEffect(() => {
     /*global google*/
     google.accounts.id.initialize({
-      client_id: '373547344231-6j6o6t1hnnpke6j59nj9g2l51hgk5nup.apps.googleusercontent.com', // Replace with your actual client ID
+      client_id: '364065480016-q7eubgp3n4qjeea2cl5cl3c4seg1qeff.apps.googleusercontent.com', // Replace with your actual client ID
       callback: handleCallbackResponse,
     });
 
