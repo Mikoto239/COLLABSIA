@@ -86,7 +86,7 @@ const Signup = ({ history }) => {
   useEffect(() => {
     /*global google*/
     google.accounts.id.initialize({
-      client_id: "364065480016-q7eubgp3n4qjeea2cl5cl3c4seg1qeff.apps.googleusercontent.com",
+      client_id: "373547344231-kgk6hbkdkrkmnmqi6q1dnlcqne0dn903.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
   
